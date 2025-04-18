@@ -9,6 +9,7 @@ import { useSer_MST_CustomerType } from "./clientgate/master/Ser_MST_CustomerTyp
 import { useCommonApi } from "./common-api";
 import { useMas_OneApi } from "./clientgate/master/Mas_One";
 import {useMas_TwoApi} from "./clientgate/master/Mas_Two";
+import { useMas_ThreeApi } from "./clientgate/master/Mas_Three";
 /**
  * Creates an axios instance for making requests to the ClientGate API.
  * @param {IUser} currentUser - The current user's information.
@@ -244,6 +245,7 @@ export const createClientGateApi = (
   const ser_CavityApi = useSer_CavityApi(apiBase);
   const masOneApi = useMas_OneApi(apiBase);
   const masTwoApi = useMas_TwoApi(apiBase);
+  const masThreeApi = useMas_ThreeApi(apiBase);
 
 
   /// em phải khao báo object chứa những api em tạo thêm vào đây nhé
@@ -258,6 +260,7 @@ export const createClientGateApi = (
     ...ser_CavityApi,
     ...masOneApi,
     ...masTwoApi,
+    ...masThreeApi,
   };
 };
 

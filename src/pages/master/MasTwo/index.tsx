@@ -71,10 +71,8 @@ const MasTwo = () => {
       return api.Mas_Two_Create(param);
     },
     api_update: async (formData) => {
-      const dataList = gridRef.current.getVisibleData();
-      const d = dataList.find((item: any) => item.SerID === formData.SerID);
       const param = {
-        SerID: d.SerID,
+        SerID: formData.SerID,
         TypeID: formData.TypeID,
         SerCode: formData.SerCode,
         SerName: formData.SerName,
@@ -226,7 +224,7 @@ const MasTwo = () => {
               onMountInitial={onMountInitial}
               firstDefaultValue
               localeKey="Mas_Two"
-              primaryKey={"SerCode"}
+              primaryKey={"SerID"}
             ></PopupFromGrid>
           </ContentSearchPanelLayout.Slot>
         </ContentSearchPanelLayout>

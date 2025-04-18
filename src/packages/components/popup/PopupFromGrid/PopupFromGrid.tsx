@@ -193,6 +193,7 @@ export interface IButtonOptionsPopup {
   showButtonAdd?: boolean;
   showButtonDetail?: boolean;
   showButtonDelete?: boolean;
+  showButtonActivite?: boolean;
 }
 
 interface IProps {
@@ -301,6 +302,7 @@ const PopupFromGrid = forwardRef(
         showButtonAdd: true,
         showButtonDetail: true,
         showButtonDelete: true,
+        showButtonActivite: true,
       },
       minHeight = 240,
       customWitdh,
@@ -524,9 +526,13 @@ const PopupFromGrid = forwardRef(
       >
         <form className="flex flex-col" id="editForm" onSubmit={formSubmit}>
           <div
-            className={`grid grid-cols-${groupColumn.length} gap-[${gapBetweenEachGroup}px] popup-${groupColumn.length}-col`}
+            className={`grid gap-[${gapBetweenEachGroup}px] popup-${groupColumn.length}-col`}
+            style={{
+              gridTemplateColumns: `repeat(${groupColumn.length}, 1fr)`,
+            }}
           >
             {groupColumn.map((group, index) => {
+              console.log("groupColumn", groupColumn)
               return (
                 <div className="flex flex-col ml-1">
                   {group.columns.map((column, columnIndex) => {
@@ -596,6 +602,12 @@ const PopupFromGrid = forwardRef(
           <ButtonCommon
             onClick={handleSave} // Nút lưu cập nhật
             text="Lưu"
+            permissionCode="BTN_QT_DL_QUANLYNGUOIDUNG_SUA"
+            visible={currentType == "detail"}
+          ></ButtonCommon>
+          <ButtonCommon
+            onClick={handleSave} // Nút lưu cập nhật
+            text="Kích hoạt"
             permissionCode="BTN_QT_DL_QUANLYNGUOIDUNG_SUA"
             visible={currentType == "detail"}
           ></ButtonCommon>
