@@ -606,12 +606,6 @@ const PopupFromGrid = forwardRef(
             visible={currentType == "detail"}
           ></ButtonCommon>
           <ButtonCommon
-            onClick={handleSave} // Nút lưu cập nhật
-            text="Kích hoạt"
-            permissionCode="BTN_QT_DL_QUANLYNGUOIDUNG_SUA"
-            visible={currentType == "detail"}
-          ></ButtonCommon>
-          <ButtonCommon
             onClick={handleDelete}
             text="Xóa"
             visible={currentType == "detail" && buttonOptions.showButtonDelete}

@@ -7,7 +7,7 @@ import { AxiosInstance } from "axios";
 
 export const useMas_ThreeApi = (apiBase: AxiosInstance) => {
   return {
-    Mas_Three_GetAllPartGroupName: async (): Promise<
+    Mas_Three_GetAllPartTypeName: async (): Promise<
       ApiResponse<Mas_Three>
     > => {
       return await apiBase.post<any, ApiResponse<Mas_Three>>(
@@ -15,7 +15,7 @@ export const useMas_ThreeApi = (apiBase: AxiosInstance) => {
         {}
       );
     },
-    Mas_Three_GetAllPartTypeName: async (): Promise<ApiResponse<Mas_Three>> => {
+    Mas_Three_GetAllPartGroupName: async (): Promise<ApiResponse<Mas_Three>> => {
       return await apiBase.post<any, ApiResponse<Mas_Three>>(
         "/SerMSTPartGroup/GetAllActive",
         {}

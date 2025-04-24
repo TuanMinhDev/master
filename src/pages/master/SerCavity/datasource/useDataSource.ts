@@ -52,7 +52,7 @@ export const useSerMSTPartTypeDataSource = () => {
     const resp = await api.Mas_Three_GetAllPartTypeName();
     if (resp.isSuccess) {
       setLoading(false);
-
+     
       return resp.DataList ?? [];
     } else {
       showError({
@@ -85,7 +85,7 @@ export const useSerMSTPartGroupDataSource = () => {
   const getListSerMSTPartGroup = async () => {
     setLoading(true);
 
-    const resp = await api.Mas_Three_GetAllPartGroupName();
+    const resp = await api. Mas_Three_GetAllPartGroupName();
     if (resp.isSuccess) {
       setLoading(false);
 

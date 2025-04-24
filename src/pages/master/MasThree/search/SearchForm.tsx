@@ -25,7 +25,7 @@ export const SearchForm = ({ data, onSearch }: SearchFormProps) => {
   const { data: getMasThreePartGroupName } = useQuery({
     queryKey: ["getMasThreePartGroupID"],
     queryFn: async () => {
-      const response = await api.Mas_Three_GetAllPartTypeName();
+      const response = await api.Mas_Three_GetAllPartGroupName();
       if (response.isSuccess) {
         return [
           {
@@ -52,7 +52,7 @@ export const SearchForm = ({ data, onSearch }: SearchFormProps) => {
     {
       visible: true,
       dataField: "PartCode",
-      label: { text: "Mã phụ tùng" },
+      label: { text: "Mã vật tư" },
       render: (param: any) => {
         const { dataField, component: formComponent } = param;
         const formData = formComponent.option("formData");
@@ -76,7 +76,7 @@ export const SearchForm = ({ data, onSearch }: SearchFormProps) => {
     {
       visible: true,
       dataField: "VieName",
-      label: { text: "Tên phụ tùng" },
+      label: { text: "Tên vật tư" },
       render: (param: any) => {
         const { dataField, component: formComponent } = param;
         const formData = formComponent.option("formData");
@@ -99,13 +99,12 @@ export const SearchForm = ({ data, onSearch }: SearchFormProps) => {
     },
     {
       visible: true,
-      dataField: "PartGroupName",
+      dataField: "GroupName",
       label: { text: "Loại vật tư" },
       render: (param: any) => {
         const { dataField, component: formComponent } = param;
         const formData = formComponent.option("formData");
         const value = formData[dataField];
-        console.log("getMasThreePartGroupName", getMasThreePartGroupName);
         return (
           <SelectField
             width={270}
@@ -129,6 +128,7 @@ export const SearchForm = ({ data, onSearch }: SearchFormProps) => {
             formInstance={formComponent}
             onValueChanged={(e: any) => {
               formComponent.updateData(dataField, e.value);
+              
             }}
           />
         );

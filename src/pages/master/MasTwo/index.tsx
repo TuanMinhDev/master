@@ -13,6 +13,7 @@ import PopupFromGrid, {
   ITitlePopup,
 } from "@/packages/components/popup/PopupFromGrid/PopupFromGrid";
 import { useMstLocationDataSource } from "../SerCavity/datasource/useDataSource";
+import { GridCustomerToolBarItem } from "@/packages/components/gridview-standard/grid-custom-toolbar";
 
 const MasTwo = () => {
   const popupRef = useRef<any>(null);
@@ -182,6 +183,7 @@ const MasTwo = () => {
     const listMasTwo = await dataSourcePopup.getListCavityType();
     return { listMasTwo: listMasTwo };
   };
+   
   return (
     <AdminContentLayout>
       <AdminContentLayout.Slot name={"Header"}>
@@ -206,6 +208,7 @@ const MasTwo = () => {
             <GridViewOne
               ref={gridRef}
               dataSource={[]}
+              toolbarItems={[]}
               columns={columns}
               isHiddenCheckBox
               showSTT={true}
@@ -214,6 +217,7 @@ const MasTwo = () => {
               allowSelection={false}
               keyExpr={"SerCode"}
               storeKey={"MasTwo"}
+              
             />
             <PopupFromGrid
               ref={popupRef}
