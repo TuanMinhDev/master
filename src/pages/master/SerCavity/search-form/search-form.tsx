@@ -196,6 +196,14 @@ const SearchForm = ({ data, onSearch }: SearchFormProps) => {
   ];
 
   const checkValidFormData = (formData: any) => {
+    // if (!formData.FromDateFromTo[0]) {
+    //   showDialog({
+    //     title: "Thông báo",
+    //     message: "Vui lòng chọn ngày vào xưởng!",
+    //   });
+    //   return false;
+    // }
+
     return true;
   };
   return (

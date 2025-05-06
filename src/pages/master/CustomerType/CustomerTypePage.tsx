@@ -76,7 +76,7 @@ export const CustomerTypePage = () => {
             name = "Tổ chức";
             break;
           default:
-            name = "0";
+            name = "0"; // để giống trên winform
             break;
         }
         return name;
@@ -120,6 +120,10 @@ export const CustomerTypePage = () => {
     gridRef.current?.refetchData(number);
   };
 
+  const onPageChanged = async (number: number) => {
+    await onRefetchData(number);
+  };
+
   const handleDelete = async (listSelected: any[]) => {
     if (listSelected.length == 0) {
       showDialog({
@@ -155,8 +159,7 @@ export const CustomerTypePage = () => {
     });
     gridRef.current?.refetchData();
   };
-  let originalData: any[] = [];
-  let isSorted = false;
+
   const toolbarItems: GridCustomerToolBarItem[] = [
     {
       text: "Xóa",
@@ -171,60 +174,6 @@ export const CustomerTypePage = () => {
       shouldShow: (ref: any) => {
         return true;
       },
-    },
-
-    {
-      text: "Sắp xếp theo tên (dòng chọn)",
-      onClick: async (e: any, ref: any) => {
-        if (ref?.current?._instance) {
-          const gridInstance = ref.current._instance;
-
-          const dataSource = gridInstance.getDataSource();
-
-          const allData = dataSource.items() ?? [];
-
-          const selectedData = gridInstance.getSelectedRowsData() ?? [];
-
-          if (selectedData.length === 0) return;
-
-          if (!isSorted) {
-            originalData = [...allData];
-
-            const selectedIds = new Set(
-              selectedData.map((item: any) => item.CusTypeID)
-            );
-
-            const selected = allData.filter((item: any) =>
-              selectedIds.has(item.CusTypeID)
-            );
-
-            const unselected = allData.filter(
-              (item: any) => !selectedIds.has(item.CusTypeID)
-            );
-
-            const sortedSelected = selected.sort((a: any, b: any) => {
-              return a.CusTypeName.localeCompare(b.CusTypeName, "vi", {
-                sensitivity: "base",
-              });
-            });
-
-            const finalData = [...sortedSelected, ...unselected];
-
-            dataSource.store().clear();
-            finalData.forEach((item) => dataSource.store().insert(item));
-            dataSource.reload();
-
-            isSorted = true;
-          } else {
-            dataSource.store().clear();
-            originalData.forEach((item) => dataSource.store().insert(item));
-            dataSource.reload();
-
-            isSorted = false;
-          }
-        }
-      },
-      shouldShow: (ref: any) => true,
     },
   ];
 

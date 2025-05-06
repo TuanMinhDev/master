@@ -23,6 +23,16 @@ export const useHeaderItems = () => {
         path: `/admin`,
         permissionCode: "MNU_QT",
       },
+      {
+        text: "Báo cáo",
+        path: `/report`,
+        permissionCode: "",
+      },
+      {
+        text: "Dịch vụ",
+        path: `/service`,
+        permissionCode: "",
+      },
     ].filter(
       (item) =>
         item.permissionCode === "" ||

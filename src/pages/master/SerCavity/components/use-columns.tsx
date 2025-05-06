@@ -16,6 +16,7 @@ export const useGridColumns = ({ data, popupRef }: UseGridColumnsProps) => {
       dataField: "CavityNo",
       caption: t("CavityNo"),
       validationRules: [requiredType],
+
       editorOptions: {
         validationMessageMode: "always",
         placeholder: t("Input"),
@@ -71,6 +72,9 @@ export const useGridColumns = ({ data, popupRef }: UseGridColumnsProps) => {
       columnIndex: 2,
       groupKey: "BASIC_INFORMATION",
       visible: true,
+      width: 100,
+      maxWidth: 100,
+      minWidth: 100,
     },
     {
       dataField: "StartUseDate",

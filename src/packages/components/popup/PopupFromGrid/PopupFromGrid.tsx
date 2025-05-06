@@ -5,7 +5,6 @@ import { loadPanelAtom } from "@/packages/store/loadPanel-store";
 import ButtonCommon from "@/packages/ui/button/ButtonCommon";
 import { Popup } from "devextreme-react";
 import { IFormItemProps } from "devextreme-react/data-grid";
-import { changeLanguage } from "i18next";
 import { useSetAtom } from "jotai";
 import {
   forwardRef,
@@ -193,7 +192,6 @@ export interface IButtonOptionsPopup {
   showButtonAdd?: boolean;
   showButtonDetail?: boolean;
   showButtonDelete?: boolean;
-  showButtonActivite?: boolean;
 }
 
 interface IProps {
@@ -302,7 +300,6 @@ const PopupFromGrid = forwardRef(
         showButtonAdd: true,
         showButtonDetail: true,
         showButtonDelete: true,
-        showButtonActivite: true,
       },
       minHeight = 240,
       customWitdh,
@@ -314,8 +311,6 @@ const PopupFromGrid = forwardRef(
   ) => {
     useImperativeHandle(ref, () => ({
       async showPopup({ type, data }) {
-        console.log(data);
-
         setOpen(true);
 
         reset();
@@ -526,13 +521,9 @@ const PopupFromGrid = forwardRef(
       >
         <form className="flex flex-col" id="editForm" onSubmit={formSubmit}>
           <div
-            className={`grid gap-[${gapBetweenEachGroup}px] popup-${groupColumn.length}-col`}
-            style={{
-              gridTemplateColumns: `repeat(${groupColumn.length}, 1fr)`,
-            }}
+            className={`grid grid-cols-${groupColumn.length} gap-[${gapBetweenEachGroup}px] popup-${groupColumn.length}-col`}
           >
             {groupColumn.map((group, index) => {
-              console.log("groupColumn", groupColumn)
               return (
                 <div className="flex flex-col ml-1">
                   {group.columns.map((column, columnIndex) => {

@@ -11,9 +11,12 @@ import PopupFromGrid, {
   IAPI,
   IGroupColumnPopup,
 } from "@/packages/components/popup/PopupFromGrid/PopupFromGrid";
-import {useSerMSTPartGroupDataSource, useSerMSTPartTypeDataSource } from "../SerCavity/datasource/useDataSource";
+import {
+  useSerMSTPartGroupDataSource,
+  useSerMSTPartTypeDataSource,
+} from "../SerCavity/datasource/useDataSource";
 import { useI18n } from "@/i18n/useI18n";
-
+import { GridCustomerToolBarItem } from "@/packages/components/gridview-standard/grid-custom-toolbar";
 
 const MasThree = () => {
   const popupRef = useRef<any>(null);
@@ -107,7 +110,7 @@ const MasThree = () => {
       columns: [
         {
           dataField: "PartGroupID",
-          caption: ("Loại vật tư"),
+          caption: "Loại vật tư",
           editorType: "dxSelectBox",
           required: true,
           rules: {
@@ -193,21 +196,19 @@ const MasThree = () => {
         },
         {
           dataField: "VAT",
-          caption: ("VAT"),
+          caption: "VAT",
           editorType: "dxNumberBox",
           required: true,
           rules: {
             required: "Vui lòng nhập VAT!",
-            min:
-            {
+            min: {
               value: 0,
-              message: "VAT phải >= 0"
+              message: "VAT phải >= 0",
             },
-            max:
-            {
+            max: {
               value: 100,
-              message: "VAT phải <= 100"
-            }
+              message: "VAT phải <= 100",
+            },
           },
           editorOptions: {
             disabled: (data: any) => {
@@ -270,17 +271,14 @@ const MasThree = () => {
         },
         {
           dataField: "FreqUsed",
-          caption: ("Hãy sử dụng"),
+          caption: "Hãy sử dụng",
           editorType: "dxCheckBox",
           required: false,
-          rules: {
-            
-          },
+          rules: {},
           editorOptions: {
-            labelPosion: "left"
-          }
+            labelPosion: "left",
+          },
         },
-
       ],
     },
   ];
@@ -288,18 +286,62 @@ const MasThree = () => {
     title_create: "Tạo mới",
     title_detail: "Chi tiết",
   };
-  
+
   const dataSourceSerMSTPartGroupPopup = useSerMSTPartGroupDataSource();
   const dataSourceSerMSTPartTypePopup = useSerMSTPartTypeDataSource();
 
   const onMountInitial = async () => {
-    const listSerMSTPartGroup = await dataSourceSerMSTPartGroupPopup.getListSerMSTPartGroup();
-    const listSerMSTPartType = await dataSourceSerMSTPartTypePopup.getListSerMSTPartType();
-    return { 
+    const listSerMSTPartGroup =
+      await dataSourceSerMSTPartGroupPopup.getListSerMSTPartGroup();
+    const listSerMSTPartType =
+      await dataSourceSerMSTPartTypePopup.getListSerMSTPartType();
+    return {
       ListPartGroupID: listSerMSTPartGroup,
       ListPartTypeID: listSerMSTPartType,
-     };
+    };
   };
+  let dataS: any[] = [];
+  const toolbarItems: GridCustomerToolBarItem[] = [
+    {
+      text: "Sắp xếp theo tên (dòng chọn)",
+      onClick: async (e: any, ref: any) => {
+        if (ref?.current?._instance) {
+          const gridInstance = ref.current._instance;
+          const dataSource = gridInstance.getDataSource();
+          const allData = dataSource.items() ?? [];
+
+          const dataS = [...allData];
+          const selectedData = gridInstance.getSelectedRowsData() ?? [];
+
+          if (selectedData.length === 0) return;
+          const selectedIds = new Set(
+            selectedData.map((item: any) => item.PartID)
+          );
+
+          const selected = allData.filter((item: any) =>
+            selectedIds.has(item.PartID)
+          );
+          const unselected = allData.filter(
+            (item: any) => !selectedIds.has(item.PartID)
+          );
+
+          const selectedSort = selected.sort((a: any, b: any) => {
+            return a.VieName.localeCompare(b.VieName, "vi", {
+              sensitivity: "base",
+            });
+          });
+
+          const updateData = [...selectedSort, ...unselected];
+          dataSource.store().clear();
+          updateData.forEach((item) => dataSource.store().insert(item));
+          dataSource.reload();
+        } 
+      },
+      shouldShow: () => {
+        return true;
+      },
+    },
+  ];
   return (
     <AdminContentLayout>
       <AdminContentLayout.Slot name={"Header"}>
@@ -331,7 +373,7 @@ const MasThree = () => {
               keyExpr={"PartCode"}
               storeKey={"MasThree"}
               allowSelection={false}
-
+              customToolbarItems={toolbarItems}
             />
             <PopupFromGrid
               ref={popupRef}

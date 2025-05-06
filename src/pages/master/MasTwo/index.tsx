@@ -217,7 +217,6 @@ const MasTwo = () => {
               allowSelection={false}
               keyExpr={"SerCode"}
               storeKey={"MasTwo"}
-              
             />
             <PopupFromGrid
               ref={popupRef}
