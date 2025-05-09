@@ -1,7 +1,9 @@
+import BaoGiaChiTiet from "@/pages/service/BaoGia/BaoGiaChiTiet";
 import DanhSachHangBaoHiemNo from "@/pages/service/DanhSachHangBaoHiemNo";
 import Detail_DanhSachHangBaoHiemNo from "@/pages/service/DanhSachHangBaoHiemNo/chi-tiet/chi-tiet";
 import { QLDanhSachNoNCC } from "@/pages/service/QLDanhSachNoNCC";
 import { QLDanhSachNoNCC_Detail } from "@/pages/service/QLDanhSachNoNCC/chi-tiet";
+import QuyetToanChiTiet from "@/pages/service/QuyetToan/QuyetToanChiTiet";
 import { RouteItem } from "@/types";
 
 export const serviceRoutes: RouteItem[] = [
@@ -46,8 +48,27 @@ export const serviceRoutes: RouteItem[] = [
     subMenuTitle: "",
     mainMenuKey: "service",
     permissionCode: "",
-    getPageElement: () => <Detail_DanhSachHangBaoHiemNo></Detail_DanhSachHangBaoHiemNo>,
+    getPageElement: () => (
+      <Detail_DanhSachHangBaoHiemNo></Detail_DanhSachHangBaoHiemNo>
+    ),
     view: "DL",
   },
-  
+  {
+    key: "BaoGiaChiTiet",
+    path: "service/BaoGiaChiTiet",
+    subMenuTitle: "BaoGiaChiTiet",
+    mainMenuKey: "service",
+    permissionCode: "",
+    getPageElement: () => <BaoGiaChiTiet></BaoGiaChiTiet>,
+    view: "DL",
+  },
+  {
+    key: "QuyetToanChiTiet",
+    path: "service/QuyetToanChiTiet",
+    subMenuTitle: "QuyetToanChiTiet",
+    mainMenuKey: "service",
+    permissionCode: "",
+    getPageElement: () => <QuyetToanChiTiet></QuyetToanChiTiet>,
+    view: "DL",
+  },
 ];

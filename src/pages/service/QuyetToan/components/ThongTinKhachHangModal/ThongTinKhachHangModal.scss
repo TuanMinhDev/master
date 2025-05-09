@@ -1,0 +1,56 @@
+.custom-tab-panel {
+  background-color: transparent;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -20px;
+    width: calc(100% + 40px);
+    height: 0.5px;
+    background-color: #5f7d95;
+  }
+
+  .dx-tabs-wrapper {
+    background-color: transparent !important;
+  }
+
+  .dx-tabs {
+    background-color: transparent;
+    border: none;
+  }
+
+  .dx-tab {
+    padding: 5px 10px !important;
+    background-color: #fff;
+  }
+
+  .dx-tab-selected {
+    background-color: #eaf9f2;
+  }
+
+  .dx-tab-text {
+    font-size: 12px !important;
+    text-transform: none;
+    font-weight: 600;
+    line-height: 20px;
+  }
+}
+
+// Thêm style cho các phần tử trong form
+.bg-gray-100 {
+  background-color: #f3f4f6;
+  border-radius: 4px;
+}
+
+// Style cho các nút
+.dx-button-mode-contained.dx-button-success {
+  background-color: #22c55e;
+  border-color: #22c55e;
+}
+
+.dx-button-mode-contained.dx-button-danger {
+  background-color: #ef4444;
+  border-color: #ef4444;
+}
