@@ -48,14 +48,14 @@ export const adminRoutes: RouteItem[] = [
     getPageElement: () => <MasOne />,
     view: "DL",
   },
-  {
-    key: "MasTwo",
-    path: "admin/MasTwo",
-    mainMenuKey: "admin",
-    permissionCode: "",
-    getPageElement: () => <MasTwo />,
-    view: "DL",
-  },
+  // {
+  //   key: "MasTwo",
+  //   path: "admin/MasTwo",
+  //   mainMenuKey: "admin",
+  //   permissionCode: "",
+  //   getPageElement: () => <MasTwo />,
+  //   view: "DL",
+  // },
   // {
   //   key: "MasThree",
   //   path: "admin/MasThree",
@@ -131,4 +131,14 @@ export const adminRoutes: RouteItem[] = [
     getPageElement: () => <Customer />,
     view: "DL",
   },
+  {
+    key: "MasTwo",
+    path: "admin/MasTwo",
+    subMenuTitle: "MasTwo",
+    mainMenuKey: "admin",
+    permissionCode: "",
+    getPageElement: () => <MasTwo />,
+    view: "DL",
+  },
+  
 ];

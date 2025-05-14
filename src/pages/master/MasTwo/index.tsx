@@ -241,12 +241,7 @@ const MasTwo = () => {
               allowSelection={false}
               keyExpr={"SerCode"}
               storeKey={"MasTwo"}
-              onError={(error) => {
-                console.error("GridViewOne error:", error);
-                showError({
-                  message: "Error in grid component",
-                });
-              }}
+              
             />
             <PopupFromGrid
               ref={popupRef}

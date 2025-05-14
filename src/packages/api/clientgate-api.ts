@@ -155,6 +155,9 @@ import { useRpt_DMSSerThongKeBaoHanhTheoModelApi } from "./clientgate/report/Tho
 import { useRpt_ThongKeCongViecApi } from "./clientgate/report/ThongKeCongViecApi";
 import { useSerPartOOApi } from "./clientgate/storage/SerPartOOApi";
 import { useCommonApi } from "./common-api";
+import { useMas_TwoApi } from "./clientgate/master/Mas_Two";
+import { useMas_ThreeApi } from "./clientgate/master/Mas_Three";
+import { useMas_OneApi } from "./clientgate/master/Mas_One";
 // import { useRpt_BaoHanhThongKeTheoModelApi } from "./clientgate/report/Rpt_BaoHanhThongKeTheoModelApi";
 // import { useMst_TCGCarPriceApi } from "./clientgate/Mst_TCGCarPriceApi";
 
@@ -596,9 +599,13 @@ export const createClientGateApi = (
 
   //DungVA
   const useSer_ROAPI = useSer_ROApi(apiBase);
-
+  const Mas_Two = useMas_TwoApi(apiBase);
+  const Mas_Three = useMas_ThreeApi(apiBase);
+  const Mas_One = useMas_OneApi(apiBase);
   return {
-    
+    ...Mas_One,
+    ...Mas_Three,
+    ...Mas_Two,
     ...Ser_Inv_PartPrice,
     ...ThongKeCongViecApi,
     ...NPPQLChienDich,
