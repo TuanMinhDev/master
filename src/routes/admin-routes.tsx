@@ -1,4 +1,5 @@
 import { CuocHen } from "@/pages/master/CuocHen";
+import { Customer } from "@/pages/master/Customer";
 import { CustomerTypePage } from "@/pages/master/CustomerType/CustomerTypePage";
 import { DanhSachCuocHenPage } from "@/pages/master/DanhSachCuocHen/DanhSachCuocHenPage";
 import TaoMoiCuocHenPage from "@/pages/master/DanhSachCuocHen/TaoMoiCuocHen/TaoMoiCuocHen";
@@ -47,14 +48,14 @@ export const adminRoutes: RouteItem[] = [
     getPageElement: () => <MasOne />,
     view: "DL",
   },
-  // {
-  //   key: "MasTwo",
-  //   path: "admin/MasTwo",
-  //   mainMenuKey: "admin",
-  //   permissionCode: "",
-  //   getPageElement: () => <MasTwo />,
-  //   view: "DL",
-  // },
+  {
+    key: "MasTwo",
+    path: "admin/MasTwo",
+    mainMenuKey: "admin",
+    permissionCode: "",
+    getPageElement: () => <MasTwo />,
+    view: "DL",
+  },
   // {
   //   key: "MasThree",
   //   path: "admin/MasThree",
@@ -120,5 +121,14 @@ export const adminRoutes: RouteItem[] = [
     permissionCode: "",
     getPageElement: () => <CuocHen/>,
     view: "DL",
-  }
+  },
+ {
+    key: "Customer",
+    path: "admin/Customer",
+    subMenuTitle: "Customer",
+    mainMenuKey: "admin",
+    permissionCode: "",
+    getPageElement: () => <Customer />,
+    view: "DL",
+  },
 ];

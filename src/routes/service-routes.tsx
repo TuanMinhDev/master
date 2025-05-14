@@ -1,4 +1,4 @@
-import BaoGiaChiTiet from "@/pages/service/BaoGia/BaoGiaChiTiet";
+
 import DanhSachHangBaoHiemNo from "@/pages/service/DanhSachHangBaoHiemNo";
 import Detail_DanhSachHangBaoHiemNo from "@/pages/service/DanhSachHangBaoHiemNo/chi-tiet/chi-tiet";
 import { QLDanhSachNoNCC } from "@/pages/service/QLDanhSachNoNCC";
@@ -53,15 +53,7 @@ export const serviceRoutes: RouteItem[] = [
     ),
     view: "DL",
   },
-  {
-    key: "BaoGiaChiTiet",
-    path: "service/BaoGiaChiTiet",
-    subMenuTitle: "BaoGiaChiTiet",
-    mainMenuKey: "service",
-    permissionCode: "",
-    getPageElement: () => <BaoGiaChiTiet></BaoGiaChiTiet>,
-    view: "DL",
-  },
+
   {
     key: "QuyetToanChiTiet",
     path: "service/QuyetToanChiTiet",

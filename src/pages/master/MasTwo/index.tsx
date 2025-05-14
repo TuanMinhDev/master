@@ -14,8 +14,11 @@ import PopupFromGrid, {
 } from "@/packages/components/popup/PopupFromGrid/PopupFromGrid";
 import { useMstLocationDataSource } from "../SerCavity/datasource/useDataSource";
 import { GridCustomerToolBarItem } from "@/packages/components/gridview-standard/grid-custom-toolbar";
+import { showErrorAtom } from "@/packages/store";
+import { useSetAtom } from "jotai";
 
 const MasTwo = () => {
+  const showError = useSetAtom(showErrorAtom);
   const popupRef = useRef<any>(null);
   const gridRef: any = useRef<DataGrid | null>(null);
   const columns = useGridColumns({ data: [], popupRef });
@@ -42,16 +45,37 @@ const MasTwo = () => {
     };
     await onRefetchData();
   };
-
   const fetchData = async () => {
-    const response = await api.Mas_Two_Search({
-      SerCode: searchCondition.current.SerCode,
-      SerName: searchCondition.current.SerName,
-      IsActive: searchCondition.current.IsActive,
-      Ft_PageIndex: gridRef?.current?.getDxInstance()?.pageIndex() ?? 0,
-      Ft_PageSize: gridRef?.current?.getDxInstance()?.pageSize() ?? 100,
-    });
-    return response;
+    try {
+      const response = await api.Mas_Two_Search({
+        SerCode: searchCondition.current.SerCode,
+        SerName: searchCondition.current.SerName,
+        IsActive: searchCondition.current.IsActive,
+        Ft_PageIndex: gridRef?.current?.getDxInstance()?.pageIndex() ?? 0,
+        Ft_PageSize: gridRef?.current?.getDxInstance()?.pageSize() ?? 100,
+      });
+      
+      if (!response.isSuccess) {
+        showError({
+          message: response._strErrCode,
+          _strErrCode: response._strErrCode,
+          _strTId: response._strTId,
+          _strAppTId: response._strAppTId,
+          _objTTime: response._objTTime,
+          _strType: response._strType,
+          _dicDebug: response._dicDebug,
+          _dicExcs: response._dicExcs,
+        });
+      }
+      
+      return response;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      showError({
+        message: "Failed to fetch data",
+      });
+      return { isSuccess: false, DataList: [] };
+    }
   };
   const onRefetchData = async (number?: number) => {
     gridRef.current?.refetchData(number);
@@ -183,7 +207,7 @@ const MasTwo = () => {
     const listMasTwo = await dataSourcePopup.getListCavityType();
     return { listMasTwo: listMasTwo };
   };
-   
+
   return (
     <AdminContentLayout>
       <AdminContentLayout.Slot name={"Header"}>
@@ -217,6 +241,12 @@ const MasTwo = () => {
               allowSelection={false}
               keyExpr={"SerCode"}
               storeKey={"MasTwo"}
+              onError={(error) => {
+                console.error("GridViewOne error:", error);
+                showError({
+                  message: "Error in grid component",
+                });
+              }}
             />
             <PopupFromGrid
               ref={popupRef}
