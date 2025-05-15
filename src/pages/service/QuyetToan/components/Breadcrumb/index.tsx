@@ -1,41 +1,13 @@
 import BreadcrumbDetail from "@/packages/ui/header/breadcrumb_detail/BreadcrumbDetail";
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 
 interface IProps {
-  handleNavigateHome: () => void;
-  handleLuu: () => void;
-  handleXoa: () => void;
-  handleIn: () => void;
-  handleKhongSuDung: () => void;
-  handleChoPhuTung: () => void;
-  handleHuyBo: () => void;
-  handleThongTinKhachHang: () => void;
+  handleNavigateHome?: () => void;
+  handleModal?: () => void;
 }
 
 export const BreadcrumbBaoGiaChiTiet = forwardRef(
-  (
-    {
-      handleNavigateHome,
-      handleLuu,
-      handleXoa,
-      handleIn,
-      handleKhongSuDung,
-      handleChoPhuTung,
-      handleHuyBo,
-      handleThongTinKhachHang,
-    }: IProps,
-    ref
-  ) => {
-    const visible = {
-      luu: true,
-      xoa: true,
-      in: true,
-      khongSuDung: true,
-      choPhuTung: true,
-      huyBo: true,
-      thongTinKhachHang: true,
-    };
-
+  ({ handleNavigateHome, handleModal }: IProps, ref) => {
     return (
       <BreadcrumbDetail
         mainTitle="Quyết toán"
@@ -43,39 +15,34 @@ export const BreadcrumbBaoGiaChiTiet = forwardRef(
         handleNavigateHome={handleNavigateHome}
         listButton={[
           {
-            text: "Thông tin khách hàng",
-            onClick: handleThongTinKhachHang,
-            visible: visible["thongTinKhachHang"],
+            text: "Modal",
+            onClick: handleModal ?? (() => {}),
+            visible: true,
           },
           {
-            text: "Lưu",
-            onClick: handleLuu,
-            visible: visible["luu"],
+            text: "In quyết toán",
+            onClick: () => {},
+            visible: true,
           },
           {
-            text: "Xóa báo giá",
-            onClick: handleXoa,
-            visible: visible["xoa"],
+            text: "Công nợ",
+            onClick: () => {},
+            visible: true,
           },
           {
-            text: "In báo giá",
-            onClick: handleIn,
-            visible: visible["in"],
+            text: "In phiếu thu ",
+            onClick: () => {},
+            visible: true,
           },
           {
-            text: "Không sử dụng",
-            onClick: handleKhongSuDung,
-            visible: visible["khongSuDung"],
+            text: "Kết thúc",
+            onClick: () => {},
+            visible: true,
           },
           {
-            text: "Chờ phụ tùng",
-            onClick: handleChoPhuTung,
-            visible: visible["choPhuTung"],
-          },
-          {
-            text: "Hủy bỏ",
-            onClick: handleHuyBo,
-            visible: visible["huyBo"],
+            text: "In phiếu giao xe",
+            onClick: () => {},
+            visible: true,
           },
         ]}
       />

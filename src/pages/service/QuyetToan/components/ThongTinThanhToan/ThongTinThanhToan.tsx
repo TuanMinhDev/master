@@ -1,11 +1,15 @@
 import { useI18n } from "@/i18n/useI18n";
-import { Form, TextBox, NumberBox, CheckBox } from "devextreme-react";
+import { Form, CheckBox } from "devextreme-react";
 import { GroupItem, SimpleItem } from "devextreme-react/form";
 import { useRef } from "react";
+import { TextBoxField } from "@/packages/ui/hook-form-field/TextBoxField";
+import { NumberBoxField } from "@/packages/ui/hook-form-field/NumberBoxField";
+import { useForm } from "react-hook-form";
 
 const ThongTinThanhToan = ({ onValueChanged }: { onValueChanged?: (field: string, value: any) => void }) => {
   const { t } = useI18n("QuyetToan");
   const formRef = useRef<Form>(null);
+  const { register, control, watch } = useForm();
 
   return (
     <div className="bg-white p-3 mb-3 shadow-sm">
@@ -14,16 +18,32 @@ const ThongTinThanhToan = ({ onValueChanged }: { onValueChanged?: (field: string
           <h3 className="font-bold mb-3">TG giao xe thực tế</h3>
           <div className="grid grid-cols-3 gap-2 mb-3">
             <div>
-              <label className="block mb-1">Ngày</label>
-              <TextBox className="w-full" />
+              <TextBoxField 
+                field={register("day")} 
+                label="Ngày" 
+                disabled={true}
+                labelWidth="30px"
+                cssClass="w-[120px]"
+              />
             </div>
             <div>
-              <label className="block mb-1">Thời gian</label>
-              <TextBox className="w-full" />
+              <TextBoxField 
+                field={register("time")} 
+                label="Thời gian" 
+                disabled={true}
+                labelWidth="60px"
+                cssClass="w-[120px]"
+
+              />
             </div>
             <div>
-              <label className="block mb-1">Giờ</label>
-              <TextBox className="w-full" />
+              <TextBoxField 
+                field={register("hour")} 
+                label="Giờ" 
+                disabled={true}
+                labelWidth="20px"
+                cssClass="w-[70px]"
+              />
             </div>
           </div>
           <CheckBox 
@@ -36,32 +56,27 @@ const ThongTinThanhToan = ({ onValueChanged }: { onValueChanged?: (field: string
         <div className="border p-2 "style={{width:"60%"}}>
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-7">
-              <div className="flex justify-between items-center mb-3">
+              <div className="flex justify-between items-center">
                 <span className="font-bold">Tổng tiền trước thuế</span>
                 <span>0</span>
               </div>
               
-              <div className="flex items-center mb-3">
-                <span className="font-bold mr-2">Giảm trừ khác</span>
-                <div className="flex-grow">
-                  <NumberBox 
-                    value={0} 
-                    format="#,##0" 
-                    className="w-full text-right"
-                    onValueChanged={(e) => onValueChanged?.('otherDiscount', e.value)}
-                  />
-                </div>
+              <div className="flex items-center">
+                <NumberBoxField
+                  field={register("otherDiscount")}
+                  label="Giảm trừ khác"
+                  format="#,##0"
+                  labelWidth="200px"
+                />
               </div>
               
               <div className="flex items-center">
-                <span className="font-bold mr-2">Tiền sử dụng từ thẻ</span>
-                <div className="flex-grow">
-                  <NumberBox 
-                    format="#,##0" 
-                    className="w-full text-right"
-                    onValueChanged={(e) => onValueChanged?.('cardPayment', e.value)}
-                  />
-                </div>
+                <NumberBoxField
+                  field={register("cardPayment")}
+                  label="Tiền sử dụng từ thẻ"
+                  format="#,##0"
+                  labelWidth="200px"
+                />
               </div>
             </div>
             
@@ -84,11 +99,14 @@ const ThongTinThanhToan = ({ onValueChanged }: { onValueChanged?: (field: string
           </div>
         </div>
       </div>
+      
     </div>
   );
 };
 
 export default ThongTinThanhToan;
+
+
 
 
 

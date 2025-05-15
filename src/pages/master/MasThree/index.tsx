@@ -11,10 +11,10 @@ import PopupFromGrid, {
   IAPI,
   IGroupColumnPopup,
 } from "@/packages/components/popup/PopupFromGrid/PopupFromGrid";
-import {
-  useSerMSTPartGroupDataSource,
-  useSerMSTPartTypeDataSource,
-} from "../SerCavity/datasource/useDataSource";
+// import {
+//   useSerMSTPartGroupDataSource,
+//   useSerMSTPartTypeDataSource,
+// } from "../SerCavity/datasource/useDataSource";
 import { useI18n } from "@/i18n/useI18n";
 import { GridCustomerToolBarItem } from "@/packages/components/gridview-standard/grid-custom-toolbar";
 
@@ -287,19 +287,19 @@ const MasThree = () => {
     title_detail: "Chi tiết",
   };
 
-  const dataSourceSerMSTPartGroupPopup = useSerMSTPartGroupDataSource();
-  const dataSourceSerMSTPartTypePopup = useSerMSTPartTypeDataSource();
+  // const dataSourceSerMSTPartGroupPopup = useSerMSTPartGroupDataSource();
+  // const dataSourceSerMSTPartTypePopup = useSerMSTPartTypeDataSource();
 
-  const onMountInitial = async () => {
-    const listSerMSTPartGroup =
-      await dataSourceSerMSTPartGroupPopup.getListSerMSTPartGroup();
-    const listSerMSTPartType =
-      await dataSourceSerMSTPartTypePopup.getListSerMSTPartType();
-    return {
-      ListPartGroupID: listSerMSTPartGroup,
-      ListPartTypeID: listSerMSTPartType,
-    };
-  };
+  // const onMountInitial = async () => {
+  //   const listSerMSTPartGroup =
+  //     await dataSourceSerMSTPartGroupPopup.getListSerMSTPartGroup();
+  //   const listSerMSTPartType =
+  //     await dataSourceSerMSTPartTypePopup.getListSerMSTPartType();
+  //   return {
+  //     ListPartGroupID: listSerMSTPartGroup,
+  //     ListPartTypeID: listSerMSTPartType,
+  //   };
+  // };
   let dataS: any[] = [];
   const toolbarItems: GridCustomerToolBarItem[] = [
     {
@@ -381,7 +381,7 @@ const MasThree = () => {
               api={api_popup}
               groupColumn={columns_popup}
               title={title_popup}
-              onMountInitial={onMountInitial}
+              // onMountInitial={onMountInitial}
               firstDefaultValue
               localeKey="Mas_Three"
               primaryKey={"PartID"}

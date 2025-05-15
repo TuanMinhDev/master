@@ -43,8 +43,8 @@ export const SearchForm = ({ data, onSearch }: SearchFormPops) => {
       },
     },
     {
-      dataField: "",
-      label: { text: "" },
+      dataField: "IsDebit",
+      label: { text: "", visible: false },
       visible: true,
       render: (param: any) => {
         const { dataField, component: formComponent } = param;
@@ -53,23 +53,35 @@ export const SearchForm = ({ data, onSearch }: SearchFormPops) => {
           <div className={"flex flex-col list-checkbox"}>
             <CheckboxField
               label={"Còn nợ"}
-              dataField={"Deb"}
+              dataField={"IsDebit"}
               formInstance={formComponent}
-              defaultValue={!!formData?.["Deb"]}
+              defaultValue={!!formData?.["IsDebit"]}
               onValueChanged={(e: any) => {
                 const value = e.value ? 1 : 0;
-                formComponent.updateData("Deb", value);
-
                 formComponent.updateData("IsDebit", value);
               }}
             />
+          </div>
+        );
+      },
+    },
+    {
+      dataField: "FlagDataWH",
+      label: { text: "", visible: false },
+      visible: true,
+      render: (param: any) => {
+        const { dataField, component: formComponent } = param;
+
+        return (
+          <div>
             <CheckboxField
-              label={commonLocale.CHECKBOX_FLAG_WH}
+              label={"Dữ liệu lịch sử"}
               dataField={dataField}
               formInstance={formComponent}
-              defaultValue={formData?.[dataField] == 1 ? true : false}
+              defaultValue={!!formData?.["FlagDataWH"]}
               onValueChanged={(e: any) => {
-                formComponent.updateData(dataField, e.value);
+                const value = e.value ? true : false;
+                formComponent.updateData(dataField, value);
               }}
             />
           </div>

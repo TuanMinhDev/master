@@ -5,16 +5,18 @@ import SearchPrimaryIcon from "@/packages/ui/icons/svg/search-primary";
 import { ColumnOptions } from "@/types";
 import { SelectBox, TextBox } from "devextreme-react";
 import { useRef } from "react";
+import SearchButton from "../../button/search";
+import { TextBoxField } from "@/packages/ui/hook-form-field/TextBoxField";
 
 export const PhanCongLaoDongPage = () => {
   const textBoxRef = useRef();
   const dataSource = [
     {
       STT: 1,
-      MaCV: "CV001",
-      TenCV: "Thay dầu máy",
-      LoaiDichVu: "Sửa chữa",
-      DoiTuongTT: "Khách hàng",
+      MaCV: "",
+      TenCV: "",
+      LoaiDichVu: "Sữa chữa",
+      DoiTuongTT: "",
       GioDM: "1.5",
       HeSoGia: "1.2",
       GioCong: 2,
@@ -26,10 +28,10 @@ export const PhanCongLaoDongPage = () => {
     },
     {
       STT: 2,
-      MaCV: "CV002",
-      TenCV: "Thay lọc gió",
+      MaCV: "",
+      TenCV: "",
       LoaiDichVu: "Lắp đặt",
-      DoiTuongTT: "Bảo hiểm",
+      DoiTuongTT: "",
       GioDM: "0.5",
       HeSoGia: "1.0",
       GioCong: 1,
@@ -41,10 +43,40 @@ export const PhanCongLaoDongPage = () => {
     },
     {
       STT: 3,
-      MaCV: "CV003",
-      TenCV: "Kiểm tra hệ thống điện",
-      LoaiDichVu: "Lắp đặt",
-      DoiTuongTT: "Khách hàng",
+      MaCV: "",
+      TenCV: "",
+      LoaiDichVu: "Sữa chữa",
+      DoiTuongTT: "",
+      GioDM: "2.0",
+      HeSoGia: "1.5",
+      GioCong: 3,
+      DonGia: 500000,
+      ThanhTien: 2250000,
+      Thue: 0,
+      GiaBaoHiem: 5,
+      GhiChu: "",
+    },
+    {
+      STT: 4,
+      MaCV: "",
+      TenCV: "",
+      LoaiDichVu: "",
+      DoiTuongTT: "",
+      GioDM: "2.0",
+      HeSoGia: "1.5",
+      GioCong: 3,
+      DonGia: 500000,
+      ThanhTien: 2250000,
+      Thue: 0,
+      GiaBaoHiem: 5,
+      GhiChu: "",
+    },
+    {
+      STT: 5,
+      MaCV: "",
+      TenCV: "",
+      LoaiDichVu: "",
+      DoiTuongTT: "",
       GioDM: "2.0",
       HeSoGia: "1.5",
       GioCong: 3,
@@ -200,27 +232,17 @@ export const PhanCongLaoDongPage = () => {
           </div>
         }
         headerRender={
-          <div className="flex items-center gap-[10px] w-full justify-around">
-            <div className="flex items-center">
-              <TextBox
-                width={200}
-                showClearButton
-                style={{
-                  height: "24px",
-                }}
-              />
-              <div className="ml-[5px]">
-                <ButtonCommon
-                  icon={<SearchPrimaryIcon />}
-                  size="small"
-                ></ButtonCommon>
-              </div>
-            </div>
-            <div className="flex gap-[8px] ml-[-150px]">
-              <ButtonCommon size="small">Xóa</ButtonCommon>
-              <ButtonCommon size="small">Điền nhiều hàng</ButtonCommon>
-            </div>
+          <div className="flex items-center gap-[10px] w-full  ">
             <div className="flex items-center gap-[8px]">
+              <TextBoxField
+                field={""}
+                
+              />
+              <SearchButton />
+              <ButtonCommon size="small" >Xóa</ButtonCommon>
+              <ButtonCommon size="small" >Điền nhiều hàng</ButtonCommon>
+            </div>
+            <div className="flex items-center gap-[8px] pl-[100px]">
               <label className="font-semibold text-[14px] text-[#1e2c50]">
                 Tổng tiền:
               </label>
@@ -230,8 +252,8 @@ export const PhanCongLaoDongPage = () => {
               <div className="bg-[#f7f9fa] px-[8px] py-[2px] border rounded-[4px] min-w-[100px] text-right font-semibold text-[#1e2c50]">
                 500.000
               </div>
-              <div className="bg-[#f7f9fa] px-[8px] py-[2px] border rounded-[4px] min-w-[130px] text-right font-semibold text-[#1e2c50]">
-                10.000.000.000
+              <div className="bg-[#f7f9fa] px-[8px] py-[2px] border rounded-[4px] min-w-[100px] text-right font-semibold text-[#1e2c50]">
+                500.000
               </div>
             </div>
           </div>
@@ -241,3 +263,5 @@ export const PhanCongLaoDongPage = () => {
     </>
   );
 };
+
+

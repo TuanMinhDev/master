@@ -140,5 +140,14 @@ export const adminRoutes: RouteItem[] = [
     getPageElement: () => <MasTwo />,
     view: "DL",
   },
+  {
+    key: "MasThree",
+    path: "admin/MasThree",
+    subMenuTitle: "MasThree",
+    mainMenuKey: "admin",
+    permissionCode: "",
+    getPageElement: () => <MasThree />,
+    view: "DL",
+  },
   
 ];

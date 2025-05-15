@@ -1,21 +1,23 @@
 import { GridViewOne } from "@/packages/ui/base-gridview/gridview-one";
 import ButtonCommon from "@/packages/ui/button/ButtonCommon";
 import CollapseHeader from "@/packages/ui/header/collapse_header/CollapseHeader";
+import { TextBoxField } from "@/packages/ui/hook-form-field/TextBoxField";
 import SearchPrimaryIcon from "@/packages/ui/icons/svg/search-primary";
 import { ColumnOptions } from "@/types";
 import { SelectBox, TextBox } from "devextreme-react";
-import { useRef } from "react";
+
+import SearchButton from "../../button/search";
 
 export const PhuTungPage = () => {
-  const textBoxRef = useRef();
+  
   const dataSource = [
     {
       STT: 1,
       SerID: 1,
       SerCode: "",
       SerName: "",
-      LoaiDichVu: "Sửa chữa",
-      DoiTuongTT: "Khách hàng",
+      LoaiDichVu: "",
+      DoiTuongTT: "",
       GioDM: "",
       HeSoGia: "",
       SLC: 5,
@@ -30,8 +32,8 @@ export const PhuTungPage = () => {
       SerID: 2,
       SerCode: "",
       SerName: "",
-      LoaiDichVu: "Lắp đặt",
-      DoiTuongTT: "Bảo hiểm",
+      LoaiDichVu: "",
+      DoiTuongTT: "",
       GioDM: "",
       HeSoGia: "",
       SLC: 10,
@@ -47,8 +49,8 @@ export const PhuTungPage = () => {
       SerID: 3,
       SerCode: "",
       SerName: "",
-      LoaiDichVu: "Lắp đặt",
-      DoiTuongTT: "Khách hàng",
+      LoaiDichVu: "",
+      DoiTuongTT: "",
       GioDM: "",
       SLC: 0,
 
@@ -64,8 +66,8 @@ export const PhuTungPage = () => {
       SerID: 4,
       SerCode: "",
       SerName: "",
-      LoaiDichVu: "Sửa chữa",
-      DoiTuongTT: "Khách hàng",
+      LoaiDichVu: "",
+      DoiTuongTT: "",
       GioDM: "",
       SLC: 0,
 
@@ -82,8 +84,8 @@ export const PhuTungPage = () => {
       SerCode: "",
       SerName: "",
       SLC: 0,
-      LoaiDichVu: "Lắp đặt",
-      DoiTuongTT: "Bảo hiểm",
+      LoaiDichVu: "",
+      DoiTuongTT: "",
       GioDM: "",
       HeSoGia: "",
       DonGia: 4000000,
@@ -233,39 +235,28 @@ export const PhuTungPage = () => {
           </div>
         }
         headerRender={
-          <div className="flex items-center gap-[10px] w-full justify-around">
-            <div className="flex items-center">
-              <TextBox
-                width={200}
-                showClearButton
-                style={{
-                  height: "24px",
-                }}
-              />
-              <div className="ml-[5px]">
-                <ButtonCommon
-                  icon={<SearchPrimaryIcon />}
-                  size="small"
-                ></ButtonCommon>
-              </div>
-            </div>
-            <div className="flex gap-[8px] ml-[-150px]">
-              <ButtonCommon size="small">Xóa</ButtonCommon>
-              <ButtonCommon size="small">Điền nhiều hàng</ButtonCommon>
-            </div>
+          <div className="flex items-center gap-[10px] w-full  ">
             <div className="flex items-center gap-[8px]">
+              <TextBoxField
+                field={""}
+                
+              />
+              <SearchButton />
+              <ButtonCommon size="small" >Xóa</ButtonCommon>
+              <ButtonCommon size="small" >Điền nhiều hàng</ButtonCommon>
+            </div>
+            <div className="flex items-center gap-[8px] pl-[100px]">
               <label className="font-semibold text-[14px] text-[#1e2c50]">
                 Tổng tiền:
               </label>
-
               <div className="bg-[#f7f9fa] px-[8px] py-[2px] border rounded-[4px] min-w-[100px] text-right font-semibold text-[#1e2c50]">
                 20.000.000
               </div>
               <div className="bg-[#f7f9fa] px-[8px] py-[2px] border rounded-[4px] min-w-[100px] text-right font-semibold text-[#1e2c50]">
                 500.000
               </div>
-              <div className="bg-[#f7f9fa] px-[8px] py-[2px] border rounded-[4px] min-w-[130px] text-right font-semibold text-[#1e2c50]">
-                10.000.000.000
+              <div className="bg-[#f7f9fa] px-[8px] py-[2px] border rounded-[4px] min-w-[100px] text-right font-semibold text-[#1e2c50]">
+                500.000
               </div>
             </div>
           </div>

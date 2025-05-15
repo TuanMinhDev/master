@@ -22,6 +22,7 @@ interface DateBoxFieldProps {
   refHandle?: any;
   applyValueMode?: ApplyValueMode;
   props?: any;
+  containerWidth?: string;
 }
 
 export const DateBoxField = ({
@@ -42,6 +43,7 @@ export const DateBoxField = ({
   spacing = "8px",
   applyValueMode = "instantly",
   props,
+  containerWidth = "300px",
 }: DateBoxFieldProps) => {
   const { t } = useI18n("Placeholder");
 
@@ -63,6 +65,7 @@ export const DateBoxField = ({
       style={{
         marginBottom: spacing,
         marginTop: spacing,
+        width: containerWidth,
       }}
     >
       {label && (
@@ -115,3 +118,4 @@ export const DateBoxField = ({
     </div>
   );
 };
+

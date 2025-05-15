@@ -18,7 +18,7 @@ export const SearchForm = ({ data, onSearch }: SearchFormPops) => {
     {
       visible: true,
       dataField: "InsName",
-      label: { text: "Tên nhãn BH" },
+      label: { text: "Tên hàng BH" },
       render: (param: any) => {
         const { dataField, component: formComponent } = param;
         const formData = formComponent.option("formData");
@@ -41,7 +41,7 @@ export const SearchForm = ({ data, onSearch }: SearchFormPops) => {
     },
     {
       dataField: "IsDebit",
-      label: { text: "" },
+      label: { text: "", visible: false },
       visible: true,
       render: (param: any) => {
         const { dataField, component: formComponent } = param;
@@ -55,7 +55,6 @@ export const SearchForm = ({ data, onSearch }: SearchFormPops) => {
               defaultValue={!!formData?.["IsDebit"]}
               onValueChanged={(e: any) => {
                 const value = e.value ? 1 : 0;
-                
                 formComponent.updateData("IsDebit", value);
               }}
             />
@@ -65,7 +64,7 @@ export const SearchForm = ({ data, onSearch }: SearchFormPops) => {
     },
     {
       dataField: "FlagDataWH",
-      label: { text: "" },
+      label: { text: "", visible: false },
       visible: true,
       render: (param: any) => {
         const { dataField, component: formComponent } = param;
@@ -73,7 +72,7 @@ export const SearchForm = ({ data, onSearch }: SearchFormPops) => {
         return (
           <div>
             <CheckboxField
-              label={commonLocale.CHECKBOX_FLAG_WH}
+              label={"Dữ liệu lịch sử"}
               dataField={dataField}
               formInstance={formComponent}
               defaultValue={!!formData?.["FlagDataWH"]}
